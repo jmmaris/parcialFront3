@@ -5,9 +5,9 @@ export default class Historial extends Component{
         return (
             <div className='recordatorio'>
                 <h3 >Selección anterior: {this.props.ultimaEleccion}</h3>
-                <h3>Historial de opciones elegidas:</h3>
+                <h4>Historial de opciones elegidas:</h4>
                 <ul>
-                    {this.props.elecciones.map((eleccion,i) => <li key = {eleccion + i}>{eleccion}</li>)}
+                    {this.props.elecciones.map((eleccion,i) => <li key = {i}>{eleccion}</li>)}
                 </ul>
             </div>
         )

@@ -8,25 +8,17 @@ export default class App extends Component {
   constructor() {
     super();
     this.state = {
-      'circunstancia':data[0],
-      'etapa': 1,
-      'ultimaEleccion':'',
+      circunstancia: data[0],
+      etapa: 1,
+      ultimaEleccion:'',
+      elecciones : [],
     };
   }
-  
-  elecciones = [];
-
-  // componentWillMount = () => {
-  //   this.setState({
-  //     'circunstancia':,
-  //     'etapa': 1,
-  //     'ultimaEleccion':'',
-  //   })
-  // }
 
   componentDidUpdate = () => {
-    this.elecciones.push(this.state.ultimaEleccion)
+    this.state.elecciones.push(this.state.ultimaEleccion)
   }
+  
   
   actualizarHistoria = (e) => {
     let opcion = e.target.id;
@@ -35,7 +27,7 @@ export default class App extends Component {
       alert('FIN')
     } else {
       this.setState ({
-        circunstancia : data.filter((e) => {return e.id === (this.state.etapa + 1 )+ opcion})[0],
+        circunstancia : data.filter(e =>  e.id === (this.state.etapa + 1)+ opcion)[0],
         etapa: this.state.etapa + 1,
         ultimaEleccion: opcion.toUpperCase(),
       })
@@ -43,18 +35,15 @@ export default class App extends Component {
   }
 
   render(){
-
    return (
       <div className= 'layout'>
         <h1 className= 'historia'>
           {this.state.circunstancia.historia}
         </h1>
-
         <Opciones opciones = {this.state.circunstancia.opciones} handleClick = {this.actualizarHistoria} />
-        <Historial  ultimaEleccion = {this.state.ultimaEleccion} elecciones = {this.elecciones} />
-        
+        <Historial  ultimaEleccion = {this.state.ultimaEleccion} elecciones = {this.state.elecciones} />
       </div>
-  );
+    );
   }
 }
 
